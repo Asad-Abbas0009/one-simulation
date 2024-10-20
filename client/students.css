@@ -1,0 +1,78 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+}
+
+body{
+  background-color: black;
+  /* background: linear-gradient(135deg, rgba(255, 0, 127, 1) 0%, rgba(255, 191, 0, 0.8) 35%, rgba(0, 255, 191, 0.7) 70%, rgba(0, 127, 255, 1) 100%); */
+  /* background: linear-gradient(135deg, #1b1b2f, #2a2a72, #4e4e7e); */
+  height: 100vh;
+  /* width: 100vw; */
+  /* height: 100vh; */
+}
+
+.bp-meter, .spo2-meter, .pulse-meter, .cvp-meter, .pap-meter, .etco2-meter, .rr-meter{ 
+  display: flex;
+  color: white;
+  /* width: 100%; */
+  height: 125px;
+  border: 1px solid white;
+  justify-content: space-between;
+  /* width: 400px; */
+  /* margin: 0 auto; */
+  align-items: center;
+  /* overflow: hidden; */
+} 
+.real-time-value{
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+}
+.main-container{
+  width: 55%;
+  /* display: flex; */
+  margin: 0 auto;
+  justify-content: space-between;
+}
+/* .canvas{
+  width: 70px;
+  height: 30px;
+
+} */
+.graph-value{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  /* width: 25%; */
+  /* gap: 3rem; */
+}
+.title{
+  align-items: center;
+  text-align: center;
+  /* margin: 0; */
+}
+.heading{
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 50px;
+  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+  color: white;
+}
+.bpm-display{
+  margin-right: 20px;
+}
+.text{
+  font-size: 25px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+}
+.real-time-value{
+  font-size: 25px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+}

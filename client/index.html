@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneSimulation</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+     <link rel="stylesheet" href="index.css">
+    <script defer src="script.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="home-container">
+                <div class="home-header">
+                    <img src="logo2.png" alt="OneSimulation Logo" class="logo" width="300px" onerror="this.src='default-logo.png';">
+                    <div class="button-group">
+                        <div id="students-section" class="section-button" aria-label="Navigate to Students Section">
+                            <p class="btn">Students Section</p>
+                        </div>
+                        <div id="teachers-section" class="section-button" aria-label="Navigate to Teachers Section">
+                            <p class="btn">Teachers Section</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="hero-section">
+                    <div>
+                        <h1 class="title">Welcome to OneSimulation</h1>
+                        <!-- <P></P> -->
+                    </div>
+                    <!-- <img src="./hero-sectio-img.jpg" alt=""> -->
+                </div>
+            </div>
+            <div class="runing-para">
+                <div class="line">
+                    <p class="running">We are a healthcare simulation company dedicated to provide high-quality, immersive simulation experience</p>
+                </div>
+                <div class="line">
+                    <p class="running"> for healthcare professionals.Our simulators are designed to enhance training for complex scenarios and improve</p>
+                </div>
+                <div class="line">
+                    <p class="running"> patient care.</p>
+                </div>
+                
+            </div>
+            
+            <footer class="footer">
+                <div class="footer-texts">
+                    <p class="footer-text">&copy; 2024 OneSimulation. All rights reserved.</p>
+                    <p class="footer-text">Contact us: <a href="mailto:info@onesimulation.com" class="link">info@onesimulation.com</a></p>
+                </div>
+                <!-- <div class="help">
+                    <a class="helpButton">
+                        <img src="./help.png" alt="help-support" width="60px" id="image">
+                    </a>
+                    
+                </div> -->
+                <!-- Support Dialog Box -->
+                <div id="supportDialog" class="dialog" style="display: none;">
+                    <div class="dialog-content">
+                        <span class="close-button" id="closeButton">&times;</span>
+                        <p>Support Line 1: How can we assist you?</p>
+                        <p>Support Line 2: You can reach us via email.</p>
+                        <p>Support Line 3: Call us at +123456789.</p>
+                        <p>Support Line 4: Chat with our agent for quick help.</p>
+                    </div>
+                </div>
+            </footer>
+            
+    </div> 
+    </div>
+    <script>
+        const lines = document.querySelectorAll('.line');
+        let index = 0;
+
+        function toggleLines() {
+            lines.forEach((line, i) => {
+             setTimeout(() => {
+            line.style.opacity = index % 2 === 0 ? '0' : '1'; // Toggle visibility
+            }, i * 1000); // Change each line after 1 second
+        });
+
+    index++;
+    setTimeout(toggleLines, lines.length * 1000); // Repeat after all lines have toggled
+}
+
+        toggleLines();
+
+        // Get elements
+    const helpButton = document.getElementById('helpButton');
+    const supportDialog = document.getElementById('supportDialog');
+    const closeButton = document.getElementById('closeButton');
+
+// Show the dialog when help is clicked
+helpButton.addEventListener('click', function() {
+    supportDialog.style.display = 'block';
+});
+
+// Hide the dialog when close is clicked
+closeButton.addEventListener('click', function() {
+    supportDialog.style.display = 'none';
+});
+
+// Optionally, close the dialog when clicking outside of it
+window.addEventListener('click', function(event) {
+    if (event.target == supportDialog) {
+        supportDialog.style.display = 'none';
+    }
+});
+
+    </script>
+
+    <script>
+        
+    document.getElementById('teachers-section')?.addEventListener('click', () => {
+        window.location.href = 'login.html';
+    });
+
+    document.getElementById('students-section')?.addEventListener('click', () => {
+        window.location.href = 'students.html';
+    });
+
+    document.getElementById('back')?.addEventListener('click', () => {
+        localStorage.clear()
+        window.location.href = "index.html"; // Redirect to the index.html page
+    });
+    </script>
+</body>
+</html>
