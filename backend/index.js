@@ -155,6 +155,7 @@ const sendEventsToAll = (data) => {
 
   // Loop through all clients and send the data in SSE format
   clients.forEach((client) => {
+    console.log("console index; ", client)
     client.write(`data: ${jsonData}\n\n`); // Send the JSON string to each client
   });
 };
