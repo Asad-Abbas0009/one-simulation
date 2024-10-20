@@ -76,12 +76,12 @@
         const signInButton = document.getElementById('signIn');
         const main = document.getElementById('main');
 
-        signUpButton.addEventListener('click', () =>{
+        signUpButton?.addEventListener('click', () =>{
             
             main.classList.add('right-panel-active');
             console.log("click1");
         });
-        signInButton.addEventListener('click', () =>{
+        signInButton?.addEventListener('click', () =>{
             console.log("click");
             main.classList.remove('right-panel-active');
         });
