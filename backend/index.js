@@ -106,19 +106,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// app.post("/update-teacher-data", (req, res)=>{
-//   const { data } =  req.body
-//  if(data){
-//   try {
-//     console.log(data);
-
-//   } catch (error) {
-//     res.status(400).send({error: "No data receive from teachers"});
-//   }
-//  } else{
-//   res.status(400).send({error: "no data comining from teacher"});
-//  }
-// })
 
 let clients = [];
 
