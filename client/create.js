@@ -653,7 +653,7 @@ function updateChart() {
 
   }
 
-  fetch('https://one-simulation-api11.vercel.app/teacher-graph-data', {
+  fetch('https://one-simulation-api.vercel.app/teacher-graph-data', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(simulatedData)
