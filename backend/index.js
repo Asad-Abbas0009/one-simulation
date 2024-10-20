@@ -12,7 +12,7 @@ import path from 'path';
 const app = express();
 app.use(cors(
   {
-    origin:["https://one-simulation-client-ten.vercel.app"],
+    origin: ["https://one-simulation-client-ten.vercel.app"],
     methods: ["POST","GET"],
     credentials: true
   }
