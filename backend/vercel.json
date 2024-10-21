@@ -11,5 +11,8 @@
         "src": "/(.*)",
         "dest": "/"
       }
-    ]
+    ],
+    "redirects": [
+    { "source": "/", "destination": "https://your-domain.com", "permanent": true }
+  ]
   }
