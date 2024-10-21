@@ -13,6 +13,6 @@
       }
     ],
     "redirects": [
-    { "source": "/", "destination": "https://your-domain.com", "permanent": true }
+    { "source": "/", "destination": "https://one-simulation-client-ten.vercel.app", "permanent": true }
   ]
   }
