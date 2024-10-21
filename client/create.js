@@ -186,7 +186,7 @@ document.getElementById('students-section')?.addEventListener('click', () => {
 
 document.getElementById('back')?.addEventListener('click', () => {
     localStorage.clear()
-    window.location.href = "index.html"; // Redirect to the index.html page
+    window.location.href = "https://one-simulation-backend-1.onrender.com/index.html"; // Redirect to the index.html page
 });
 }
 document.getElementById('start-monitoring')?.addEventListener('click',startMonitoring)
