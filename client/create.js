@@ -27,12 +27,13 @@ function printbpInputValue(event) {
   bpvalue = event.target.value;
   // minbpvalue = 0;
   if(bpvalue<90){
-    mincvpvalue = 0;
+    minbpvalue = 0;
   }if(bpvalue>110){
-    mincvpvalue = 90;
+    minbpvalue = 90;
   }else{
-    mincvpvalue = 90;
+    minbpvalue = 90;
   }
+  console.log("minbpvalue" + minbpvalue);
   document.getElementById('bpinputvalue').value = "";
   console.log(" Value: " + (bpvalue));
   
