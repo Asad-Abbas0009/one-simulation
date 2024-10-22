@@ -37,7 +37,7 @@ body{
     height: 125px;
     border: 1px solid white;
     justify-content: space-between;
-    /* width: 400px; */
+    width: 100%;
     /* margin: 0 auto; */
     align-items: center;
     /* overflow: hidden; */
@@ -148,9 +148,33 @@ select{
     margin-right: 15px;
     font-size: 30px;
 }
-@media (max-width: 768px) {
+.canvas {
+    width: 100%;  /* Allow the canvas to be responsive */
+    max-width: 600px; /* Restrict its maximum width */
+    height: 100px;  /* Maintain the height you set */
+    margin: 0 auto; /* Center the canvas horizontally */
+    display: block; /* Ensures proper centering */
+    border: 1px solid white; /* Optional: Add a border to match other elements */
+  }
+@media (max-width: 800px) {
     .main-container {
        flex-direction: column;
        width: 100%;
     }
+    .bp-meter, .spo2-meter, .pulse-meter, .cvp-meter, .pap-meter, .etco2-meter, .rr-meter{
+        /* height: 50px; */
+        width: 95%;
+
+      } 
+      .input-value{
+        width: 40px;
+        height: 40px;
+      }
+      .graph-value{
+        width: 10%;
+      }
+     /* .canvas{
+        width: 50%;
+        height: 100px;
+     } */
   }
