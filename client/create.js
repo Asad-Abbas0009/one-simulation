@@ -21,23 +21,43 @@ let minpapvalue = 15;
 let minetco2value = 35;
 let minrrvalue = 12;
 
-
 function printbpInputValue(event) {
   // Store the new value from the input field
-  bpvalue = event.target.value;
-  // minbpvalue = 0;
-  if(bpvalue<90){
+  let bpvalue = event.target.value;
+  let minbpvalue;
+
+  // Assign minbpvalue based on the bpvalue range
+  if (bpvalue <= 90) {
     minbpvalue = 0;
-  }if(bpvalue>110){
+  } else if (bpvalue > 110) {
     minbpvalue = 90;
-  }else{
-    minbpvalue = 90;
+  } else {
+    minbpvalue = 90; // This condition seems redundant. Adjust based on your logic.
   }
-  console.log("minbpvalue" + minbpvalue);
+
+  console.log("minbpvalue: " + minbpvalue);
+
+  // Clear the input field after processing
   document.getElementById('bpinputvalue').value = "";
-  console.log(" Value: " + (bpvalue));
-  
+
+  console.log("Input Value: " + bpvalue);
 }
+// function printbpInputValue(event) {
+//   // Store the new value from the input field
+//   bpvalue = event.target.value;
+//   // minbpvalue = 0;
+//   if((bpvalue)<=90){
+//     minbpvalue = 0;
+//   }if(bpvalue>110){
+//     minbpvalue = 90;
+//   }else{
+//     minbpvalue = 90;
+//   }
+//   console.log("minbpvalue" + minbpvalue);
+//   document.getElementById('bpinputvalue').value = "";
+//   console.log(" Value: " + (bpvalue));
+  
+// }
 function printspo2InputValue(event) {
   // Store the new value from the input field
   spo2value = event.target.value;
