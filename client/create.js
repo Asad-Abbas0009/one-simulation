@@ -25,63 +25,100 @@ let minrrvalue = 12;
 function printbpInputValue(event) {
   // Store the new value from the input field
   bpvalue = event.target.value;
-  minbpvalue = 0;
+  bpvalue = event.target.value;
+  if(bpvalue>110){
+    minbpvalue = 90;
+  }if(bpvalue<90){
+    minbpvalue = 0;
+  }
+  // minbpvalue = 0;
   document.getElementById('bpinputvalue').value = "";
   console.log(" Value: " + (bpvalue));
-  
+  console.log("minbpvalue" + minbpvalue)
 }
 function printspo2InputValue(event) {
   // Store the new value from the input field
-  spo2value = event.target.value;
-  minspo2value = 0;
-  document.getElementById('spo2inputvalue').value = "";
-  console.log(" Value: " + (spo2value));
-  
+ // Store the new value from the input field
+ spo2value = event.target.value;
+ // minspo2value = 0;
+ if(spo2value>100){
+   minspo2value = 95;
+ }if(spo2value<95){
+   minspo2value = 60;
+ }
+ document.getElementById('spo2inputvalue').value = "";
+ console.log(" Value: " + (spo2value));
+ console.log("minspo2value"+minspo2value);
+ 
 }
 function printpulseInputValue(event) {
   // Store the new value from the input field
   pulsevalue = event.target.value;
-  minpulsevalue = 0;
+  // minpulsevalue = 0;
+  if(pulsevalue>100){
+    minpulsevalue = 90;
+  }if(pulsevalue<70){
+    minbpvalue = 0;
+  }
   document.getElementById('pulseinputvalue').value = "";
   console.log(" Value: " + (pulsevalue));
-  
+  console.log("minpulsevalue" + minpulsevalue)
+
 }
 function printcvpInputValue(event) {
   // Store the new value from the input field
   cvpvalue = event.target.value;
-  if(cvpvalue<=5){
+  if(cvpvalue>10){
+    mincvpvalue = 8;
+  }if(cvpvalue<5){
     mincvpvalue = 0;
-  }if(cvp>=6){
-    mincvpvalue = 5;
-  }else{
-    return mincvpvalue = 2;
   }
+  // mincvpvalue = 0;
   document.getElementById('cvpinputvalue').value = "";
   console.log(" Value: " + (cvpvalue));
+  console.log("mincvpvalue" + mincvpvalue);
+  
   
 }
 function printpapInputValue(event) {
-  // Store the new value from the input field
   papvalue = event.target.value;
-  minpapvalue = 0;
+  if(papvalue>30){
+    minpapvalue = 15;
+  }if(papvalue<15){
+    minpapvalue = 0;
+  }
+  // minpapvalue = 0;
   document.getElementById('papinputvalue').value = "";
   console.log(" Value: " + (papvalue));
+  console.log("minpapvalue "+minpapvalue);
   
 }
 function printetco2InputValue(event) {
   // Store the new value from the input field
   etco2value = event.target.value;
-  minetco2value = 0;
+  if(etco2value>45){
+    minetco2value = 25;
+  }if(etco2value<25){
+    // minetco2value = 0;
+  }
+  // minetco2value = 0;
   document.getElementById('etco2inputvalue').value = "";
   console.log(" Value: " + (etco2value));
+  console.log("minetco2value" +  minetco2value);
   
 }
 function printrrInputValue(event) {
   // Store the new value from the input field
   rrvalue = event.target.value;
-  minrrvalue = 0;
+  if(rrvalue>16){
+    minrrvalue = 10;
+  }if(rrvalue<10){
+    minrrvalue = 0;
+  }
+  // minrrvalue = 0;
   document.getElementById('rrinputvalue').value = "";
   console.log(" Value: " + (rrvalue));
+  console.log("minrrvalue" +  minrrvalue)
   
 }
 
