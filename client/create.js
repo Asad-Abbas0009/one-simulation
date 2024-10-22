@@ -49,9 +49,9 @@ function printpulseInputValue(event) {
 function printcvpInputValue(event) {
   // Store the new value from the input field
   cvpvalue = event.target.value;
-  if(cvpvalue<5){
+  if(cvpvalue<=5){
     mincvpvalue = 0;
-  }if(cvp>5){
+  }if(cvp>=6){
     mincvpvalue = 5;
   }else{
     return mincvpvalue = 2;
