@@ -25,7 +25,14 @@ let minrrvalue = 12;
 function printbpInputValue(event) {
   // Store the new value from the input field
   bpvalue = event.target.value;
-  minbpvalue = 0;
+  // minbpvalue = 0;
+  if(bpvalue<90){
+    mincvpvalue = 0;
+  }if(bpvalue>110){
+    mincvpvalue = 90;
+  }else{
+    mincvpvalue = 90;
+  }
   document.getElementById('bpinputvalue').value = "";
   console.log(" Value: " + (bpvalue));
   
