@@ -49,7 +49,13 @@ function printpulseInputValue(event) {
 function printcvpInputValue(event) {
   // Store the new value from the input field
   cvpvalue = event.target.value;
-  mincvpvalue = 0;
+  if(cvpvalue<5){
+    mincvpvalue = 0;
+  }if(cvp>5){
+    mincvpvalue = 5;
+  }else{
+    return mincvpvalue = 2;
+  }
   document.getElementById('cvpinputvalue').value = "";
   console.log(" Value: " + (cvpvalue));
   
