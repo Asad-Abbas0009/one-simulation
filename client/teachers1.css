@@ -156,7 +156,7 @@ select{
     display: block; /* Ensures proper centering */
     border: 1px solid white; /* Optional: Add a border to match other elements */
   }
-@media (max-width: 800px) {
+@media (max-width: 850px) {
     .main-container {
        flex-direction: column;
        width: 100%;
