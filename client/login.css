@@ -11,12 +11,13 @@ body{
     background: rgb(95,88,196);
     background: linear-gradient(90deg, rgba(95,88,196,1) 14%, rgba(9,9,121,1) 56%, rgba(29,46,50,1) 100%);
     min-height: 100%;
-    width: 90%;
-    margin: 5%;
+    /* width: 70%; */
+    /* margin: 5%; */
 }
 .container{
     position: relative;
-    width: 100%;
+    width: 70%;
+    text-align: center;
     max-width: 100%;
     min-height: 480px;
     background: #fff;
