@@ -11,11 +11,12 @@ body{
     background: rgb(95,88,196);
     background: linear-gradient(90deg, rgba(95,88,196,1) 14%, rgba(9,9,121,1) 56%, rgba(29,46,50,1) 100%);
     min-height: 100%;
+    width: 90%;
     margin: 5%;
 }
 .container{
     position: relative;
-    width: 768px;
+    width: 100%;
     max-width: 100%;
     min-height: 480px;
     background: #fff;
@@ -26,9 +27,10 @@ body{
 
 }
 .logo{
-    position: relative;
+    width: 98%;
+    /* position: relative;
     top: -18px;
-    left: -315px;
+    left: -315px; */
     /* z-index: 900; */
 }
 .sign-up, .sign-in{
