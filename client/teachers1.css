@@ -231,4 +231,12 @@ select{
         width: 100%;
         height: 125px; 
      }
+     .input-value
+     {
+        width: 30px;
+        height: 30px;
+    }
+    .real-time-value{
+        font-size: 30px;
+    }
  }
