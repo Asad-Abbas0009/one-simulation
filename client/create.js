@@ -602,7 +602,7 @@ function updateChart(flag) {
 
   }
 
-  fetch('http://localhost:4000/teacher-graph-data', {
+  fetch('https://one-simulation-backend.onrender.com/teacher-graph-data', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(simulatedData)
