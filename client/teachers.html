@@ -28,6 +28,7 @@
               Start Monitoring
             </button>
             <button id="back" class="section-back">Back</button>
+            <button id="stop" onclick="stopfunction()">END</button>
           </div>
           <!-- drop down  -->
           <div class="drop-down">
@@ -93,97 +94,115 @@
   
   
         <div class="bp-meter">
-            <div>
+            <div class="canvas-div">
               <canvas id="bp_chart" class="canvas" width="600" height="100"></canvas>
             </div>
             
               <div class="graph-value">
-                <p class="text">Bp </p>
-                <p class="real-time-value" id="bpvalue">120</p>
+                <div class="runing-value">
+                  <p class="text">Bp </p>
+                  <p class="real-time-value" id="bpvalue">0</p>
+                </div>
+                
+              
+                <div class="input-tag">
+                  <input type="text" class="input-value" id="bpinputvalue" onchange="printbpInputValue(event)" />
+                  <!-- <input type=text" id="myInput" onchange="handleInputChange(event)"> -->
+                </div>
               </div>
-              <div>
-                <input type="text" class="input-value" id="bpinputvalue" onchange="printbpInputValue(event)" />
-                <!-- <input type=text" id="myInput" onchange="handleInputChange(event)"> -->
-              </div>
-            
-            
         </div>
   
         <div class="spo2-meter">
-          <div><canvas id="spo2_chart" class="canvas" width="600" height="100"></canvas></div>
+          <div class="canvas-div"><canvas id="spo2_chart" class="canvas" width="600" height="100"></canvas></div>
             
             <div class="graph-value">
-              <p class="text">Spo2 </p>
-              <p class="real-time-value" id="spo2value">98</p>
-            </div>
-            <div>
-              <input type="text" class="input-value" id="spo2inputvalue" onchange="printspo2InputValue(event)">
+              <div class="runing-value">
+                <p class="text">Spo2 </p>
+                <p class="real-time-value" id="spo2value">0</p>
+              </div>
+              
+              <div class="input-tag">
+                <input type="text" class="input-value" id="spo2inputvalue" onchange="printspo2InputValue(event)">
+              </div>
             </div>
           </div>
   
           <div class="pulse-meter">
-            <div>
+            <div class="canvas-div">
               <canvas id="pulse_chart" class="canvas" width="600" height="100"></canvas>
             </div>
             
             <div class="graph-value">
-              <p class="text">Pulse </p>
-              <p class="real-time-value" id="pulsevalue">100</p>
-            </div>
-            <div>
-              <input type="text" class="input-value" id="pulseinputvalue" onchange="printpulseInputValue(event)">
+              <div class="runing-value">
+                <p class="text">Pulse </p>
+                <p class="real-time-value" id="pulsevalue">0</p>
+              </div>
+              <div class="input-tag">
+                <input type="text" class="input-value" id="pulseinputvalue" onchange="printpulseInputValue(event)">
+              </div>
             </div>
           </div>
   
           <div class="cvp-meter">
-            <div>
+            <div class="canvas-div">
               <canvas id="cvp_chart" class="canvas" width="600" height="100"></canvas>
             </div>
             
             <div class="graph-value">
-              <p class="text">CVP </p>
-              <p class="real-time-value" id="cvpvalue">8</p>
-            </div>
-            <div>
-              <input type="text" class="input-value" id="cvpinputvalue" onchange="printcvpInputValue(event)">
+              <div class="runing-value">
+                <p class="text">CVP </p>
+                <p class="real-time-value" id="cvpvalue">0</p>
+              </div>
+              <div class="input-tag">
+                <input type="text" class="input-value" id="cvpinputvalue" onchange="printcvpInputValue(event)">
+              </div>
             </div>
           </div>
   
           <div class="pap-meter">
-            <div>
+            <div class="canvas-div">
               <canvas id="pap_chart" class="canvas" width="600" height="100"></canvas>
             </div>
-            
             <div class="graph-value">
+              <div class="runing-value">
                 <p class="text">PAP</p>
-            <p class="real-time-value" id="papvalue">30</p>
-            </div>
-            <div>
-              <input type="text" class="input-value" id="papinputvalue" onchange="printpapInputValue(event)">
+                <p class="real-time-value" id="papvalue">0</p>
+              </div>
+              
+              <div class="input-tag">
+                <input type="text" class="input-value" id="papinputvalue" onchange="printpapInputValue(event)">
+              </div>
             </div>
           </div>
   
           <div class="etco2-meter">
-            <div><canvas id="etco2_chart" class="canvas" width="600" height="100"></canvas></div>
+            <div class="canvas-div">
+              <canvas id="etco2_chart" class="canvas" width="600" height="100"></canvas>
+            </div>
               <div class="graph-value">
-                <p class="text">ETCO2</p>
-                <p class="real-time-value" id="etco2value">45</p>
-              </div>
-              <div>
-                <input type="text" class="input-value" id="etco2inputvalue" onchange="printetco2InputValue(event)">
+                <div class="runing-value">
+                  <p class="text">ETCO2</p>
+                  <p class="real-time-value" id="etco2value">0</p>
+                </div>
+                <div class="input-tag">
+                  <input type="text" class="input-value" id="etco2inputvalue" onchange="printetco2InputValue(event)">
+                </div>
               </div>
           </div>
   
           <div class="rr-meter">
-            <div>
+            <div class="canvas-div">
               <canvas id="rr_chart" class="canvas" width="600" height="100"></canvas>
             </div>
             <div class="graph-value">
-              <p class="text">RR</p>
-            <p class="real-time-value" id="rrvalue">20</p>
-            </div>
-            <div>
-              <input type="text" class="input-value" id="rrinputvalue" onchange="printrrInputValue(event)">
+              <div class="runing-value">
+                <p class="text">RR</p>
+                <p class="real-time-value" id="rrvalue">0</p>
+              </div>
+              
+              <div class="input-tag">
+                <input type="text" class="input-value" id="rrinputvalue" onchange="printrrInputValue(event)">
+              </div>
             </div>
           </div>
 

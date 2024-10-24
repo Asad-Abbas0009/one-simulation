@@ -33,15 +33,64 @@ body{
 .bp-meter, .spo2-meter, .pulse-meter, .cvp-meter, .pap-meter, .etco2-meter, .rr-meter{ 
     display: flex;
     color: white;
-    /* width: 100%; */
-    height: 125px;
-    border: 1px solid white;
-    justify-content: space-between;
     width: 100%;
+    /* height: 125px; */
+    border: 1px solid white;
+    /* justify-content: space-between; */
+    width: 100%;
+    margin: 0;
     /* margin: 0 auto; */
     align-items: center;
     /* overflow: hidden; */
  } 
+ .container{
+    width: 30%;
+ }
+ .graphs{
+    width: 70%;
+ }
+ .canvas-div{
+    flex: 3;
+ }
+ .graph-value{
+    flex: 1;
+    /* padding: 1rem */
+    align-items: center;
+    display: flex;
+    height: 100%;
+    /* flex-direction: column; */
+    /* gap: 3rem; */
+}
+.canvas {
+    width: 100%;  /* Allow the canvas to be responsive */
+    /* max-width: 600px; Restrict its maximum width */
+    height: 125px; 
+    margin: 0 auto; /* Center the canvas horizontally */
+    display: block; /* Ensures proper centering */
+    border: 1px solid white; 
+  }
+  .text{
+    font-size: 15px;
+    font-family: "Roboto", sans-serif;
+}
+.real-time-value{
+    font-size: 50px;
+    font-family: "Roboto", sans-serif;
+}
+.input-value{
+    width: 50px;
+    height: 50px;
+    /* margin-right: 15px; */
+    font-size: 30px;
+}
+.runing-value{
+    flex: 3;
+    padding: 0.50rem;
+}
+.input-tag{
+    flex: 1;
+    padding: 0.50rem;
+}
 .title{
     align-items: center;
     text-align: center;
@@ -113,8 +162,26 @@ body{
     color: white;
     margin-top: 1rem;
 }
-.text{
-    color: white;
+#bpvalue{
+    color: red;
+}
+#spo2value{
+    color: blue;
+}
+#pulsevalue{
+    color: blueviolet;
+}
+#cvpvalue{
+    color: yellow;
+}
+#papvalue{
+    color: yellowgreen;
+}
+etco2value{
+    color: rgb(255, 99, 132);
+}
+#rrvalue{
+    color: rgb(255, 99, 132);
 }
 select{
     margin-top: 0.5rem;
@@ -123,43 +190,21 @@ select{
     font-family: "Roboto", sans-serif;
     font-weight: 300;
     border-radius: 5px;
-    background-color: grey;
 }
-.graph-value{
-    display: flex;
-    flex-direction: column;
-    /* gap: 3rem; */
-}
+
 .monitoring-button{
     display: flex;
     flex-direction: column;
 }
-.text{
-    font-size: 25px;
-    font-family: "Roboto", sans-serif;
-}
-.real-time-value{
-    font-size: 20px;
-    font-family: "Roboto", sans-serif;
-}
-.input-value{
-    width: 50px;
-    height: 50px;
-    margin-right: 15px;
-    font-size: 30px;
-}
-.canvas {
-    width: 100%;  /* Allow the canvas to be responsive */
-    max-width: 600px; /* Restrict its maximum width */
-    height: 100px;  /* Maintain the height you set */
-    margin: 0 auto; /* Center the canvas horizontally */
-    display: block; /* Ensures proper centering */
-    border: 1px solid white; /* Optional: Add a border to match other elements */
-  }
-@media (max-width: 850px) {
+
+
+@media (max-width: 768px) {
     .main-container {
        flex-direction: column;
        width: 100%;
+       align-items: center;
+       justify-content: center;
+       margin: 0 auto;
     }
     .bp-meter, .spo2-meter, .pulse-meter, .cvp-meter, .pap-meter, .etco2-meter, .rr-meter{
         /* height: 50px; */
@@ -173,8 +218,17 @@ select{
       .graph-value{
         width: 10%;
       }
-     /* .canvas{
-        width: 50%;
-        height: 100px;
-     } */
-  }
+      .container{
+        width: 30%;
+     }
+     .graphs{
+        width: 70%;
+     }
+     .canvas-div{
+        flex: 3;
+     }
+     .canvas{
+        width: 100%;
+        height: 125px; 
+     }
+ }
