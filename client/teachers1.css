@@ -239,4 +239,10 @@ select{
     .real-time-value{
         font-size: 30px;
     }
+    .section-start{
+        font-size: 15px;
+    }
+    .section-back{
+        font-size: 15px;
+    }
  }
