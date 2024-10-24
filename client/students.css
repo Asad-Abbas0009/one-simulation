@@ -27,9 +27,10 @@ body{
   /* overflow: hidden; */
 } 
 .real-time-value{
-  font-size: 20px;
-  font-family: "Roboto", sans-serif;
+    font-size: 50px;
+    font-family: "Roboto", sans-serif;
 }
+
 .main-container{
   width: 55%;
   /* display: flex; */
@@ -75,4 +76,25 @@ body{
   font-size: 25px;
   font-family: "Roboto", sans-serif;
   font-weight: 200;
+}
+#bpvalue{
+  color: red;
+}
+#spo2value{
+  color: blue;
+}
+#pulsevalue{
+  color: blueviolet;
+}
+#cvpvalue{
+  color: yellow;
+}
+#papvalue{
+  color: yellowgreen;
+}
+etco2value{
+  color: rgb(255, 99, 132);
+}
+#rrvalue{
+  color: rgb(255, 99, 132);
 }

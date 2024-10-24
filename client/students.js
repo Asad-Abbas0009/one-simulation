@@ -425,6 +425,6 @@ document.addEventListener('DOMContentLoaded', function () {
       if (data && data.bpvalue) {
         updateChartValue(data);
       }
-    }, 2000);
+    }, 1500);
   }
   
