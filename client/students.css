@@ -37,11 +37,9 @@ body{
   margin: 0 auto;
   justify-content: space-between;
 }
-/* .canvas{
-  width: 70px;
-  height: 30px;
-
-} */
+.canvas{
+  border: 1px solid white;
+}
 .graph-value{
   display: flex;
   flex-direction: column;
