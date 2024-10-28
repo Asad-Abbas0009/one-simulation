@@ -39,6 +39,7 @@ body{
 }
 .canvas{
   border: 1px solid white;
+  width: 100%;
 }
 .graph-value{
   display: flex;
