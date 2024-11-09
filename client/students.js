@@ -3,82 +3,41 @@ document.addEventListener('DOMContentLoaded', function () {
     showingStudentsGraphs();
   });
   
-  // const configBp_chart = {
-  //   type: 'line',
-  //   data: {
-  //     labels: Array(50).fill(''), // Time or Data Points
-  //     datasets: [
-  //       {
-  //         label: 'Blood Pressure',
-  //         data: Array(50).fill(0),
-  //         borderColor: 'rgb(75, 192, 192)',
-  //         tension: 1,
-  //         borderWidth: 2,
-  //         lineTension: 0.25,
-  //         pointRadius: 0,
-  //         borderColor: 'red',
-  //         fill: false,
-  //       },
-  //     ],
-  //   },
-  //   options: {
-  //     responsive: true,
-  //     maintainAspectRatio: false
-  //   },
-  //     plugins: {
-  //       legend: { display: false },
-  //     },
-  //     scales: {
-  //       y: {
-  //         title: {
-  //           display: false,
-  //           text: '',
-  //         },
-  //         min: 0,
-  //         max: 150,
-  //       },
-  //     },
-  //     tooltips: { display: false },
-  //   },
-  // };
-  
   const configBp_chart = {
     type: 'line',
     data: {
-      labels: Array(50).fill(''), // Placeholder labels for data points
+      labels: Array(50).fill(''), // Time or Data Points
       datasets: [
         {
           label: 'Blood Pressure',
-          data: Array(50).fill(0), // Placeholder data points
-          borderColor: 'red', // Line color
+          data: Array(50).fill(0),
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 1,
           borderWidth: 2,
-          tension: 0.25, // Smoothing for line curve
-          pointRadius: 0, // Hide data point markers
-          fill: false, // No fill under the line
+          lineTension: 0.25,
+          pointRadius: 0,
+          borderColor: 'red',
+          fill: false,
         },
       ],
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
       plugins: {
-        legend: { display: false }, // Hide legend
-        tooltip: { enabled: false }, // Hide tooltips
+        legend: { display: false },
       },
       scales: {
         y: {
           title: {
             display: false,
-            text: '', // No title for y-axis
+            text: '',
           },
           min: 0,
-          max: 150, // Set y-axis range
+          max: 150,
         },
       },
+      tooltips: { display: false },
     },
   };
-  
-  
   const configSpo2_chart = {
     // Define the config for SPO2 chart similarly to BP chart
     type: 'line',
@@ -300,7 +259,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let rrChart = null;
   let data = {}; // Store data from EventSource here
   
-  const eventSource = new EventSource('https://one-simulation-backend.onrender.com/transferData');
+  const eventSource = new EventSource('http://localhost:4000/transferData');
   
   // Handle incoming data
   eventSource.onmessage = (event) => {
@@ -466,6 +425,6 @@ document.addEventListener('DOMContentLoaded', function () {
       if (data && data.bpvalue) {
         updateChartValue(data);
       }
-    }, 1500);
+    }, 2000);
   }
   

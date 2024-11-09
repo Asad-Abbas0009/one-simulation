@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // changeValueOnUpClick();
-  // changeValueOnDownClick();
+
   setupMonitoringButton();
 });
-let booleanFlag = false;
+
 var disease_cond = 'normal';
 let bpvalue = 120;
 let spo2value = 100;
@@ -15,114 +14,71 @@ let rrvalue = 16;
 let minbpvalue = 90;
 let minspo2value = 95;
 let minpulsevalue = 60;
-// let minpapvalue = 60;
 let mincvpvalue = 2;
 let minpapvalue = 15;
 let minetco2value = 35;
 let minrrvalue = 12;
 
-// set booleanFlag value as true after 10sec
-setTimeout(() => {
-  booleanFlag = true;
-}, 10000);
+const beepSound = new Audio('/client/beep.mp3');
+
+function playBeep() {
+  beepSound.play();
+}
 
 function printbpInputValue(event) {
   // Store the new value from the input field
   bpvalue = event.target.value;
-  bpvalue = event.target.value;
-  if(bpvalue>110){
-    minbpvalue = 90;
-  }if(bpvalue<90){
-    minbpvalue = 0;
-  }
-  // minbpvalue = 0;
+  minbpvalue = 0;
   document.getElementById('bpinputvalue').value = "";
   console.log(" Value: " + (bpvalue));
-  console.log("minbpvalue" + minbpvalue)
   
 }
 function printspo2InputValue(event) {
   // Store the new value from the input field
   spo2value = event.target.value;
-  // minspo2value = 0;
-  if(spo2value>100){
-    minspo2value = 95;
-  }if(spo2value<95){
-    minspo2value = 60;
-  }
+  minspo2value = 0;
   document.getElementById('spo2inputvalue').value = "";
   console.log(" Value: " + (spo2value));
-  console.log("minspo2value"+minspo2value);
   
 }
 function printpulseInputValue(event) {
   // Store the new value from the input field
   pulsevalue = event.target.value;
-  // minpulsevalue = 0;
-  if(pulsevalue>100){
-    minpulsevalue = 90;
-  }if(pulsevalue<70){
-    minbpvalue = 0;
-  }
+  minpulsevalue = 0;
   document.getElementById('pulseinputvalue').value = "";
   console.log(" Value: " + (pulsevalue));
-  console.log("minpulsevalue" + minpulsevalue)
   
 }
 function printcvpInputValue(event) {
   // Store the new value from the input field
   cvpvalue = event.target.value;
-  if(cvpvalue>10){
-    mincvpvalue = 8;
-  }if(cvpvalue<5){
-    mincvpvalue = 0;
-  }
-  // mincvpvalue = 0;
+  mincvpvalue = 0;
   document.getElementById('cvpinputvalue').value = "";
   console.log(" Value: " + (cvpvalue));
-  console.log("mincvpvalue" + mincvpvalue);
   
 }
 function printpapInputValue(event) {
   // Store the new value from the input field
   papvalue = event.target.value;
-  if(papvalue>30){
-    minpapvalue = 15;
-  }if(papvalue<15){
-    minpapvalue = 0;
-  }
-  // minpapvalue = 0;
+  minpapvalue = 0;
   document.getElementById('papinputvalue').value = "";
   console.log(" Value: " + (papvalue));
-  console.log("minpapvalue "+minpapvalue);
   
 }
 function printetco2InputValue(event) {
   // Store the new value from the input field
   etco2value = event.target.value;
-  if(etco2value>45){
-    minetco2value = 25;
-  }if(etco2value<25){
-    // minetco2value = 0;
-  }
-  // minetco2value = 0;
+  minetco2value = 0;
   document.getElementById('etco2inputvalue').value = "";
   console.log(" Value: " + (etco2value));
-  console.log("minetco2value" +  minetco2value);
   
 }
 function printrrInputValue(event) {
   // Store the new value from the input field
   rrvalue = event.target.value;
-  if(rrvalue>16){
-    minrrvalue = 10;
-  }if(rrvalue<10){
-    minrrvalue = 0;
-  }
-  // minrrvalue = 0;
+  minrrvalue = 0;
   document.getElementById('rrinputvalue').value = "";
-  console.log(" Value: " + (rrvalue));
-  console.log("minrrvalue" +  minrrvalue)
+  console.log(" Value: " + (rrvalue)); 
 }
 
   
@@ -162,8 +118,14 @@ const configBp_chart = {
     ],
   },
   options: {
+    responsive: true, // Enables responsiveness
+    maintainAspectRatio: false, // Allows dynamic resizing
     plugins: {
       legend: { display: false },
+    },
+    animation: {
+      duration: 300, // Faster animation
+      easing: 'linear', // Smooth easing function
     },
     scales: {
       y: {
@@ -198,8 +160,14 @@ const configSpo2_chart = {
     ],
   },
   options: {
+    responsive: true, // Enables responsiveness
+    maintainAspectRatio: false, // Allows dynamic resizing
     plugins: {
       legend: { display: false },
+    },
+    animation: {
+      duration: 300, // Faster animation
+      easing: 'linear', // Smooth easing function
     },
     scales: {
       y: {
@@ -207,7 +175,7 @@ const configSpo2_chart = {
           display: false,
           text: '',
         },
-        min: 50,
+        min: 0,
         max: 150,
       },
     },
@@ -234,8 +202,14 @@ const configPulse_chart = {
     ],
   },
   options: {
+    responsive: true, // Enables responsiveness
+    maintainAspectRatio: false, // Allows dynamic resizing
     plugins: {
       legend: { display: false },
+    },
+    animation: {
+      duration: 300, // Faster animation
+      easing: 'linear', // Smooth easing function
     },
     scales: {
       y: {
@@ -243,7 +217,7 @@ const configPulse_chart = {
           display: false,
           text: '',
         },
-        min: 50,
+        min: 0,
         max: 150,
       },
     },
@@ -270,8 +244,14 @@ const configCvp_chart = {
     ],
   },
   options: {
+    responsive: true, // Enables responsiveness
+    maintainAspectRatio: false, // Allows dynamic resizing
     plugins: {
       legend: { display: false },
+    },
+    animation: {
+      duration: 300, // Faster animation
+      easing: 'linear', // Smooth easing function
     },
     scales: {
       y: {
@@ -306,8 +286,14 @@ const configPap_chart = {
     ],
   },
   options: {
+    responsive: true, // Enables responsiveness
+    maintainAspectRatio: false, // Allows dynamic resizing
     plugins: {
       legend: { display: false },
+    },
+    animation: {
+      duration: 300, // Faster animation
+      easing: 'linear', // Smooth easing function
     },
     scales: {
       y: {
@@ -315,7 +301,7 @@ const configPap_chart = {
           display: false,
           text: '',
         },
-        min: 10,
+        min: 0,
         max: 50,
       },
     },
@@ -342,8 +328,14 @@ const configEtco2_chart = {
     ],
   },
   options: {
+    responsive: true, // Enables responsiveness
+    maintainAspectRatio: false, // Allows dynamic resizing
     plugins: {
       legend: { display: false },
+    },
+    animation: {
+      duration: 300, // Faster animation
+      easing: 'linear', // Smooth easing function
     },
     scales: {
       y: {
@@ -351,7 +343,7 @@ const configEtco2_chart = {
           display: false,
           text: '',
         },
-        min: 20,
+        min: 0,
         max: 60,
       },
     },
@@ -381,13 +373,17 @@ const configRr_chart = {
     plugins: {
       legend: { display: false },
     },
+    animation: {
+      duration: 300, // Faster animation
+      easing: 'linear', // Smooth easing function
+    },
     scales: {
       y: {
         title: {
           display: false,
           text: '',
         },
-        min: 5,
+        min: 0,
         max: 30,
       },
     },
@@ -412,177 +408,99 @@ function generateDiseaseCondValue(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Function to update charts based on the disease condition
-function updateChart(flag) {
-  // switch (disease_cond) {
-  //   case 'normal':
-  //     systolicBP = generateDiseaseCondValue(90, systolicBP);
-  //     // diastolicBP = generateDiseaseCondValue(60, 80);
-  //     break;
-
-  //   case 'hypertension':
-  //     systolicBP = generateDiseaseCondValue(90, 120);
-  //     diastolicBP = generateDiseaseCondValue(60, 80);
-  //     break;
-
-  //   case 'diabetes':
-  //     systolicBP = generateDiseaseCondValue(130, 140);
-  //     diastolicBP = generateDiseaseCondValue(80, 90);
-  //     break;
-
-  //   case 'asthma':
-  //     systolicBP = generateDiseaseCondValue(110, 130);
-  //     diastolicBP = generateDiseaseCondValue(70, 90);
-  //     break;
-
-  //   case 'cardiac_arrest':
-  //     systolicBP = 0; // Cardiac arrest
-  //     diastolicBP = 0;
-  //     break;
-
-  //   case 'pneumonia':
-  //     systolicBP = generateDiseaseCondValue(90, 120);
-  //     diastolicBP = generateDiseaseCondValue(60, 80);
-  //     break;
-
-  //   case 'neuraxial':
-  //     systolicBP = generateDiseaseCondValue(70, 90);
-  //     diastolicBP = generateDiseaseCondValue(40, 60);
-  //     break;
-
-  //   case 'laryngospasm':
-  //     systolicBP = generateDiseaseCondValue(140, 180);
-  //     diastolicBP = generateDiseaseCondValue(90, 100);
-  //     break;
-
-  //   case 'ga':
-  //     systolicBP = generateDiseaseCondValue(90, 120);
-  //     diastolicBP = generateDiseaseCondValue(50, 70);
-  //     break;
-
-  //   case 'high_neuraxial':
-  //     systolicBP = generateDiseaseCondValue(70, 90);
-  //     diastolicBP = generateDiseaseCondValue(40, 60);
-  //     break;
-
-  //   case 'ga_induction':
-  //     systolicBP = generateDiseaseCondValue(90, 110);
-  //     diastolicBP = generateDiseaseCondValue(50, 70);
-  //     break;
-
-  //   case 'emergence':
-  //     systolicBP = generateDiseaseCondValue(90, 160);
-  //     diastolicBP = generateDiseaseCondValue(60, 100);
-  //     break;
-
-  //   case 'hypotension':
-  //     systolicBP = generateDiseaseCondValue(70, 90);
-  //     diastolicBP = generateDiseaseCondValue(40, 60);
-  //     break;
-
-  //   case 'neonatal_resuscitation':
-  //     systolicBP = generateDiseaseCondValue(60, 90);
-  //     diastolicBP = generateDiseaseCondValue(30, 60);
-  //     break;
-
-  //   default:
-  //     systolicBP = 120;
-  //     diastolicBP = 90;
-  //     break;
-  // }
 
 
-  // Update the data for BP Chart
-  // systolicBP = generateDiseaseCondValue(90, systolicBP);
-  let bpValue; 
-  if (flag === true) {
-    bpValue = generateDiseaseCondValue(0, 0); 
-  } else {
-    bpValue = generateDiseaseCondValue(minbpvalue, bpvalue);
-  }
-  bpChart.data.labels.push(''); // Add new time label
-  bpChart.data.datasets[0].data.push(bpValue); // Add new systolic BP
+let isMonitoring = false; // Flag to track if monitoring is active
+let isStopped = false; 
 
-  if (bpChart.data.labels.length > 10) {
-    bpChart.data.labels.shift(); // Remove the oldest time label
-    bpChart.data.datasets[0].data.shift(); // Remove the oldest BP value
-  }
+function startMonitoring() {
+  isMonitoring = true; // Set monitoring to true
+  updateChart(); // Call the updateChart function immediately
+  setInterval(updateChart, 1500); // Start the update interval
+}
+
+// Check the server for stop command
+function checkForStopCommand() {
+  fetch('http://localhost:4000/arduino-data')
+    .then(response => response.json())
+    .then(data => {
+      if (data.command === 'STOP') {
+        isStopped = true;
+        resetChartsToZero();
+        setTimeout(() => {
+          isStopped = false; // Resume normal updates after 10 seconds
+        }, 10000);
+      }
+    })
+    .catch(error => console.error('Error checking for stop command:', error));
+}
+
+// Reset chart values to zero
+function resetChartsToZero() {
+  bpChart.data.datasets[0].data = Array(50).fill(0);
+  spo2Chart.data.datasets[0].data = Array(50).fill(0);
+  pulseChart.data.datasets[0].data = Array(50).fill(0);
+  cvpChart.data.datasets[0].data = Array(50).fill(0);
+  papChart.data.datasets[0].data = Array(50).fill(0);
+  etco2Chart.data.datasets[0].data = Array(50).fill(0);
+  rrChart.data.datasets[0].data = Array(50).fill(0);
+
   bpChart.update();
-
-  // Update the data for SPO2 Chart (For demonstration, let's use random values)
-  let spo2Value = generateDiseaseCondValue(minspo2value, spo2value); // Example for Spo2
-
-  spo2Chart.data.labels.push(''); // Add new time label
-  spo2Chart.data.datasets[0].data.push(spo2Value); // Add new SPO2 value
-
-  if (spo2Chart.data.labels.length > 10) {
-    spo2Chart.data.labels.shift(); // Remove the oldest time label
-    spo2Chart.data.datasets[0].data.shift(); // Remove the oldest SPO2 value
-  }
-
-  // Update the SPO2 chart
   spo2Chart.update();
-
-  let pulseValue = generateDiseaseCondValue(minpulsevalue,pulsevalue);
-  pulseChart.data.labels.push('');
-  pulseChart.data.datasets[0].data.push(pulseValue); // Add new SPO2 value
-
-  if (pulseChart.data.labels.length > 10) {
-    pulseChart.data.labels.shift(); // Remove the oldest time label
-    pulseChart.data.datasets[0].data.shift(); // Remove the oldest SPO2 value
-  }
-
-  // Update the SPO2 chart
   pulseChart.update();
-
-  let cvpValue = generateDiseaseCondValue(mincvpvalue,cvpvalue);
-  cvpChart.data.labels.push('');
-  cvpChart.data.datasets[0].data.push(cvpValue); // Add new SPO2 value
-
-  if (cvpChart.data.labels.length > 10) {
-    cvpChart.data.labels.shift(); // Remove the oldest time label
-    cvpChart.data.datasets[0].data.shift(); // Remove the oldest SPO2 value
-  }
-
-  // Update the SPO2 chart
   cvpChart.update();
-
-  let papValue = generateDiseaseCondValue(minpapvalue,papvalue);
-  papChart.data.labels.push('');
-  papChart.data.datasets[0].data.push(papValue); // Add new SPO2 value
-
-  if (papChart.data.labels.length > 10) {
-    papChart.data.labels.shift(); // Remove the oldest time label
-    papChart.data.datasets[0].data.shift(); // Remove the oldest SPO2 value
-  }
-
-  // Update the SPO2 chart
   papChart.update();
-
-  let etco2Value = generateDiseaseCondValue(minetco2value,etco2value);
-  etco2Chart.data.labels.push('');
-  etco2Chart.data.datasets[0].data.push(etco2Value); // Add new SPO2 value
-
-  if (etco2Chart.data.labels.length > 10) {
-    etco2Chart.data.labels.shift(); // Remove the oldest time label
-    etco2Chart.data.datasets[0].data.shift(); // Remove the oldest SPO2 value
-  }
-
-  // Update the SPO2 chart
   etco2Chart.update();
-
-  let rrValue = generateDiseaseCondValue(minrrvalue,rrvalue);
-  rrChart.data.labels.push('');
-  rrChart.data.datasets[0].data.push(rrValue); // Add new SPO2 value
-
-  if (rrChart.data.labels.length > 10) {
-    rrChart.data.labels.shift(); // Remove the oldest time label
-    rrChart.data.datasets[0].data.shift(); // Remove the oldest SPO2 value
-  }
-
-  // Update the SPO2 chart
   rrChart.update();
 
+    // Update display values on the page
+    document.getElementById('bpvalue').innerText = 0;
+    document.getElementById('spo2value').innerText = 0;
+    document.getElementById('pulsevalue').innerText = 0;
+    document.getElementById('cvpvalue').innerText = 0;
+    document.getElementById('papvalue').innerText = 0;
+    document.getElementById('etco2value').innerText = 0;
+    document.getElementById('rrvalue').innerText = 0;
+}
+// Function to update charts based on the disease condition
+function updateChart() {
+  if (!isMonitoring || isStopped) return; // Skip updating if stopped
+
+  let bpValue = generateDiseaseCondValue(minbpvalue, bpvalue);
+  let spo2Value = generateDiseaseCondValue(minspo2value, spo2value);
+  let pulseValue = generateDiseaseCondValue(minpulsevalue, pulsevalue);
+  let cvpValue = generateDiseaseCondValue(mincvpvalue, cvpvalue);
+  let papValue = generateDiseaseCondValue(minpapvalue, papvalue);
+  let etco2Value = generateDiseaseCondValue(minetco2value, etco2value);
+  let rrValue = generateDiseaseCondValue(minrrvalue, rrvalue);
+
+  // Update each chart with the new values
+  bpChart.data.datasets[0].data.push(bpValue);
+  spo2Chart.data.datasets[0].data.push(spo2Value);
+  pulseChart.data.datasets[0].data.push(pulseValue);
+  cvpChart.data.datasets[0].data.push(cvpValue);
+  papChart.data.datasets[0].data.push(papValue);
+  etco2Chart.data.datasets[0].data.push(etco2Value);
+  rrChart.data.datasets[0].data.push(rrValue);
+
+  // Trim data to keep only 50 values
+  if (bpChart.data.datasets[0].data.length > 50) bpChart.data.datasets[0].data.shift();
+  if (spo2Chart.data.datasets[0].data.length > 50) spo2Chart.data.datasets[0].data.shift();
+  if (pulseChart.data.datasets[0].data.length > 50) pulseChart.data.datasets[0].data.shift();
+  if (cvpChart.data.datasets[0].data.length > 50) cvpChart.data.datasets[0].data.shift();
+  if (papChart.data.datasets[0].data.length > 50) papChart.data.datasets[0].data.shift();
+  if (etco2Chart.data.datasets[0].data.length > 50) etco2Chart.data.datasets[0].data.shift();
+  if (rrChart.data.datasets[0].data.length > 50) rrChart.data.datasets[0].data.shift();
+
+  bpChart.update();
+  spo2Chart.update();
+  pulseChart.update();
+  cvpChart.update();
+  papChart.update();
+  etco2Chart.update();
+  rrChart.update();
+
+  // Update display values on the page
   document.getElementById('bpvalue').innerText = bpValue;
   document.getElementById('spo2value').innerText = spo2Value;
   document.getElementById('pulsevalue').innerText = pulseValue;
@@ -590,6 +508,7 @@ function updateChart(flag) {
   document.getElementById('papvalue').innerText = papValue;
   document.getElementById('etco2value').innerText = etco2Value;
   document.getElementById('rrvalue').innerText = rrValue;
+  playBeep();
 
   const simulatedData = {
     bpvalue: bpValue,
@@ -602,7 +521,7 @@ function updateChart(flag) {
 
   }
 
-  fetch('https://one-simulation-backend.onrender.com/teacher-graph-data', {
+  fetch('http://localhost:4000/teacher-graph-data', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(simulatedData)
@@ -618,25 +537,8 @@ function updateChart(flag) {
 console.log("simulated Data in create: ",simulatedData);
 }
 
-function runAllChains() {
-  // Check the boolean flag before updating the chart
-  if (booleanFlag) {
-    updateChart(true);
-    setTimeout(() => {
-      booleanFlag = false; // Reset the flag after 6 seconds
-    }, 10000);
-  } else {
-    updateChart(false);
-  }
-}
-function startMonitoring(){
- // Run the function every second
-setInterval(function () {
-  runAllChains();
-}, 1500);
-}
 
-// Set an interval to update charts
-// const timeId = setTimeout(() => {
-//   booleanFlag = true;
-// }, 5000);
+setInterval(checkForStopCommand, 2000);
+
+// Run updateChart every 1.5 seconds if not stopped
+setInterval(updateChart, 600);

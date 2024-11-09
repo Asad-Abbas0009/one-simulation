@@ -2,7 +2,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  width: 100;
+
 }
 
 body{
@@ -10,7 +10,8 @@ body{
   /* background: linear-gradient(135deg, rgba(255, 0, 127, 1) 0%, rgba(255, 191, 0, 0.8) 35%, rgba(0, 255, 191, 0.7) 70%, rgba(0, 127, 255, 1) 100%); */
   /* background: linear-gradient(135deg, #1b1b2f, #2a2a72, #4e4e7e); */
   height: 100vh;
-  /* width: 100vw; */
+  width: 100vw;
+  overflow-x: hidden;
   /* height: 100vh; */
 }
 
@@ -20,27 +21,30 @@ body{
   /* width: 100%; */
   height: 125px;
   border: 1px solid white;
+  border-radius: 10px;
   justify-content: space-between;
   /* width: 400px; */
   /* margin: 0 auto; */
   align-items: center;
+  margin: 0;
   /* overflow: hidden; */
 } 
 .real-time-value{
-    font-size: 50px;
-    font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
 }
-
 .main-container{
   width: 55%;
   /* display: flex; */
   margin: 0 auto;
+
   justify-content: space-between;
 }
-.canvas{
-  border: 1px solid white;
-  width: 100%;
-}
+/* .canvas{
+  width: 70px;
+  height: 30px;
+
+} */
 .graph-value{
   display: flex;
   flex-direction: column;
@@ -55,6 +59,15 @@ body{
   text-align: center;
   /* margin: 0; */
 }
+@media (max-width: 768px) {
+  .main-container {
+     flex-direction: column;
+     width: 100%;
+  }
+  .bp-meter, .spo2-meter, .pulse-meter, .cvp-meter, .pap-meter, .etco2-meter, .rr-meter{
+    height: 50px;
+  }
+}
 .heading{
   margin: 0;
   margin-bottom: 5px;
@@ -62,6 +75,8 @@ body{
   font-weight: 400;
   font-family: "Roboto", sans-serif;
   color: white;
+  margin-bottom: 20px;
+  padding-top: 10px
 }
 .bpm-display{
   margin-right: 20px;
@@ -75,25 +90,4 @@ body{
   font-size: 25px;
   font-family: "Roboto", sans-serif;
   font-weight: 200;
-}
-#bpvalue{
-  color: red;
-}
-#spo2value{
-  color: blue;
-}
-#pulsevalue{
-  color: blueviolet;
-}
-#cvpvalue{
-  color: yellow;
-}
-#papvalue{
-  color: yellowgreen;
-}
-etco2value{
-  color: rgb(255, 99, 132);
-}
-#rrvalue{
-  color: rgb(255, 99, 132);
 }

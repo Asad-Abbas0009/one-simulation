@@ -8,28 +8,19 @@ import SignupModel from './src/models/signupModels.js';
 const jwtSecret = 'onesimulation||onelearning';
 import path from 'path';
 
+
 // Initialize Express app
 const app = express();
-app.use(cors(
-  {
-    origin: ["https://one-simulation-client-ten.vercel.app"],
-    methods: ["POST","GET"],
-    credentials: true
-  }
-));
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 const PORT = 4000;
-
 
 // Connect to MongoDB
 dbConnection();
 
-app.get('/',(req, res) => {
-  res.json("helloworld")
-})
+
 // routing for the teacher page
 app.get('/teachers', (req, res) => {
   res.sendFile(path.join(__dirname, 'teachers.html')); // Serve the send.html file when /send is accessed
@@ -107,6 +98,7 @@ app.post('/login', async (req, res) => {
 });
 
 
+
 let clients = [];
 
 app.post('/teacher-graph-data', (req, res) => {
@@ -148,6 +140,7 @@ app.get('/transferData', (req, res) => {
 
   // Do not send a response like `res.send()`, as the connection should stay open
 });
+                                                
 
 const sendEventsToAll = (data) => {
   // Convert the object data to a JSON string
@@ -155,10 +148,55 @@ const sendEventsToAll = (data) => {
 
   // Loop through all clients and send the data in SSE format
   clients.forEach((client) => {
-    console.log("console index; ", client)
     client.write(`data: ${jsonData}\n\n`); // Send the JSON string to each client
   });
 };
+
+
+
+
+let stopCommand = false;
+
+
+
+// parser.on('data', (data) => {
+//   console.log('Data from Arduino:', data.trim());
+
+//   // Send data to the server
+//   axios.post(SERVER_URL, { sensorValue: data.trim() })
+//     .then(response => {
+     
+//       console.log('Data sent to server:', response.data);
+//     })
+//     .catch(error => {
+//       console.error('Error sending data:', error.message);
+//     });
+// });
+
+// Endpoint for Arduino to send data
+app.post('/arduino-data', (req, res) => {
+  const { data } = req.body;
+
+  if (data === 'STOP') {
+    stopCommand = true;
+    console.log("Received STOP command from Arduino");
+  } else {
+    stopCommand = false;
+  }
+  
+  res.status(200).send('Data received');
+});
+
+// Endpoint for the frontend to poll for STOP command
+app.get('/arduino-data', (req, res) => {
+  if (stopCommand) {
+    res.json({ command: 'STOP' });
+    stopCommand = false; // Reset command after sending to frontend
+  } else {
+    res.json({ command: 'CONTINUE' });
+  }
+});
+
 
 // Start the server
 app.listen(PORT, () => {
