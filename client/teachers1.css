@@ -202,8 +202,8 @@ select{
        
       } 
       .input-value{
-        width: 40px;
-        height: 40px;
+        width: 20px;
+        height: 20px;
       }
       .runing-value{
         font-size: 10px;
