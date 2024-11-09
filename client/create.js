@@ -28,6 +28,9 @@ function playBeep() {
 function printbpInputValue(event) {
   // Store the new value from the input field
   bpvalue = event.target.value;
+  if(bpvalue>100){
+    minbpvalue = 90;
+  }
   minbpvalue = 0;
   document.getElementById('bpinputvalue').value = "";
   console.log(" Value: " + (bpvalue));
