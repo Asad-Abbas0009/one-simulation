@@ -201,9 +201,15 @@ select{
         width: 95%;
        
       } 
+      .real-time-value{
+        font-size: 9px;
+      }
       .input-value{
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
+      }
+      select{
+        font-size: 10x;
       }
       .runing-value{
         font-size: 10px;
