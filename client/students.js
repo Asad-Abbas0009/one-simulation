@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let rrChart = null;
   let data = {}; // Store data from EventSource here
   
-  const eventSource = new EventSource('http://localhost:4000/transferData');
+  const eventSource = new EventSource('https://one-simulation-backend.onrender.com/transferData');
   
   // Handle incoming data
   eventSource.onmessage = (event) => {

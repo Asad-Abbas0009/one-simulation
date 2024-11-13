@@ -16,6 +16,9 @@
 <body>
   
   <div class="wrapper">
+    <div class="logo">
+      <img src="./logo2.png" alt="" width="200px">
+    </div>
     <div class="title">
       <h1 class="heading">Welcome to Teacher Section</h1>
     </div>
@@ -25,7 +28,7 @@
         <aside class="aside">
           <div class="btn">
             <button id="start-monitoring" class="section-start">
-              Start Monitoring
+              Monitoring
             </button>
             <button id="back" class="section-back">Back</button>
           </div>
@@ -35,7 +38,7 @@
               <div class="left">
                 <p class="health-text">Health Condition</p>
               </div>
-              <div class="right up">
+              <div class="right">
                 <select id="healthCondition" class="scenario-dropdown box">
                   <option value="normal">Normal</option>
                   <option value="etc">ETC</option>
@@ -90,25 +93,20 @@
   
   
       <div class="graphs">
-  
-  
         <div class="bp-meter">
             <div class="canvas-div">
               <canvas id="bp_chart" class="canvas"></canvas>
             </div>
-            
-              <div class="graph-value">
-                <div class="runing-value">
-                  <p class="text">Bp </p>
-                  <p class="real-time-value" id="bpvalue">0</p>
-                </div>
-                
-              
-                <div class="input-tag">
-                  <input type="text" class="input-value" id="bpinputvalue" onchange="printbpInputValue(event)" />
-                  <!-- <input type=text" id="myInput" onchange="handleInputChange(event)"> -->
-                </div>
+            <div class="graph-value">
+              <div class="runing-value">
+                <p class="text">Bp </p>
+                <p class="real-time-value" id="bpvalue">0</p>
               </div>
+              <div class="input-tag">
+                <input type="text" class="input-value" id="bpinputvalue" onchange="printbpInputValue(event)" />
+                <!-- <input type=text" id="myInput" onchange="handleInputChange(event)"> -->
+              </div>
+            </div>
         </div>
   
         <div class="spo2-meter">
@@ -197,8 +195,7 @@
               <div class="runing-value">
                 <p class="text">RR</p>
                 <p class="real-time-value" id="rrvalue">0</p>
-              </div>
-              
+              </div> 
               <div class="input-tag">
                 <input type="text" class="input-value" id="rrinputvalue" onchange="printrrInputValue(event)">
               </div>
@@ -208,9 +205,6 @@
       </div>
     </div>
   </div>
-  
-  
-
 </body>
 
 </html>

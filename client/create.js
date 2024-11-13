@@ -413,8 +413,70 @@ function generateDiseaseCondValue(min, max) {
 
 
 
-let isMonitoring = false; // Flag to track if monitoring is active
-let isStopped = false; 
+let isBpStopped = false;
+let isSpo2Stopped = false;
+let isPulseStopped = false;
+let isMonitoring = false;
+
+// Start monitoring function
+function startMonitoring() {
+  isMonitoring = true;
+  updateChart();
+  setInterval(updateChart, 1500);
+}
+function checkForAllStopCommands() {
+  checkBpStopCommand();
+  checkSpo2StopCommand();
+  checkPulseStopCommand();
+}
+
+function checkBpStopCommand() {
+  fetch('https://one-simulation-backend.onrender.com/arduino-data-bp')
+    .then(response => response.json())
+    .then(data => {
+      console.log('BP Data:', data); // Debugging
+      if (data.command === 'STOP') {
+        isBpStopped = true;
+        resetBpChartsToZero();
+        setTimeout(() => {
+          isBpStopped = false;
+        }, 10000);
+      }
+    })
+    .catch(error => console.error('Error checking BP stop command:', error));
+}
+
+function checkSpo2StopCommand() {
+  fetch('https://one-simulation-backend.onrender.com/arduino-data-spo2')
+    .then(response => response.json())
+    .then(data => {
+      console.log('SpO2 Data:', data); // Debugging
+      if (data.command === 'STOP') {
+        isSpo2Stopped = true;
+        resetSpo2ChartsToZero();
+        setTimeout(() => {
+          isSpo2Stopped = false;
+        }, 10000);
+      }
+    })
+    .catch(error => console.error('Error checking SpO2 stop command:', error));
+}
+
+function checkPulseStopCommand() {
+  fetch('https://one-simulation-backend.onrender.com/arduino-data-pulse')
+    .then(response => response.json())
+    .then(data => {
+      console.log('Pulse Data:', data); // Debugging
+      if (data.command === 'STOP') {
+        isPulseStopped = true;
+        resetPulseChartsToZero();
+        setTimeout(() => {
+          isPulseStopped = false;
+        }, 10000);
+      }
+    })
+    .catch(error => console.error('Error checking Pulse stop command:', error));
+}
 
 function startMonitoring() {
   isMonitoring = true; // Set monitoring to true
@@ -423,51 +485,79 @@ function startMonitoring() {
 }
 
 // Check the server for stop command
-function checkForStopCommand() {
-  fetch('http://localhost:4000/arduino-data')
-    .then(response => response.json())
-    .then(data => {
-      if (data.command === 'STOP') {
-        isStopped = true;
-        resetChartsToZero();
-        setTimeout(() => {
-          isStopped = false; // Resume normal updates after 10 seconds
-        }, 10000);
-      }
-    })
-    .catch(error => console.error('Error checking for stop command:', error));
-}
+// function checkForStopCommand() {
+//   fetch('http://localhost:4000/arduino-data')
+//     .then(response => response.json())
+//     .then(data => {
+//       if (data.command === 'STOP') {
+//         isStopped = true;
+//         resetChartsToZero();
+//         setTimeout(() => {
+//           isStopped = false; // Resume normal updates after 10 seconds
+//         }, 10000);
+//       }
+//     })
+//     .catch(error => console.error('Error checking for stop command:', error));
+// }
 
 // Reset chart values to zero
-function resetChartsToZero() {
-  bpChart.data.datasets[0].data = Array(50).fill(0);
-  spo2Chart.data.datasets[0].data = Array(50).fill(0);
-  pulseChart.data.datasets[0].data = Array(50).fill(0);
-  cvpChart.data.datasets[0].data = Array(50).fill(0);
-  papChart.data.datasets[0].data = Array(50).fill(0);
-  etco2Chart.data.datasets[0].data = Array(50).fill(0);
-  rrChart.data.datasets[0].data = Array(50).fill(0);
+// function resetChartsToZero() {
+//   bpChart.data.datasets[0].data = Array(50).fill(0);
+//   spo2Chart.data.datasets[0].data = Array(50).fill(0);
+//   pulseChart.data.datasets[0].data = Array(50).fill(0);
+//   cvpChart.data.datasets[0].data = Array(50).fill(0);
+//   papChart.data.datasets[0].data = Array(50).fill(0);
+//   etco2Chart.data.datasets[0].data = Array(50).fill(0);
+//   rrChart.data.datasets[0].data = Array(50).fill(0);
 
-  bpChart.update();
-  spo2Chart.update();
-  pulseChart.update();
-  cvpChart.update();
-  papChart.update();
-  etco2Chart.update();
-  rrChart.update();
+//   bpChart.update();
+//   spo2Chart.update();
+//   pulseChart.update();
+//   cvpChart.update();
+//   papChart.update();
+//   etco2Chart.update();
+//   rrChart.update();
 
-    // Update display values on the page
-    document.getElementById('bpvalue').innerText = 0;
-    document.getElementById('spo2value').innerText = 0;
-    document.getElementById('pulsevalue').innerText = 0;
-    document.getElementById('cvpvalue').innerText = 0;
-    document.getElementById('papvalue').innerText = 0;
-    document.getElementById('etco2value').innerText = 0;
-    document.getElementById('rrvalue').innerText = 0;
+//     // Update display values on the page
+//     document.getElementById('bpvalue').innerText = 0;
+//     document.getElementById('spo2value').innerText = 0;
+//     document.getElementById('pulsevalue').innerText = 0;
+//     document.getElementById('cvpvalue').innerText = 0;
+//     document.getElementById('papvalue').innerText = 0;
+//     document.getElementById('etco2value').innerText = 0;
+//     document.getElementById('rrvalue').innerText = 0;
+// }
+
+function resetBpChartsToZero() {
+  if (isBpStopped) {
+    bpChart.data.datasets[0].data = Array(50).fill(0);  // Reset BP chart
+    bpChart.update();
+    document.getElementById('bpvalue').innerText = 0;   // Reset BP display value
+  }
 }
+// Reset chart values to zero
+function resetSpo2ChartsToZero() {
+  if (isSpo2Stopped) {
+    spo2Chart.data.datasets[0].data = Array(50).fill(0);  // Reset SpO2 chart
+    spo2Chart.update();
+    document.getElementById('spo2value').innerText = 0;   // Reset SpO2 display value
+  }
+}
+
+function resetPulseChartsToZero() {
+  if (isPulseStopped) {
+    pulseChart.data.datasets[0].data = Array(50).fill(0);  // Reset Pulse chart
+    pulseChart.update();
+    document.getElementById('pulsevalue').innerText = 0;   // Reset Pulse display value
+  }
+}
+
+
+
+
 // Function to update charts based on the disease condition
 function updateChart() {
-  if (!isMonitoring || isStopped) return; // Skip updating if stopped
+  if (!isMonitoring) return; // Skip updating if stopped
 
   let bpValue = generateDiseaseCondValue(minbpvalue, bpvalue);
   let spo2Value = generateDiseaseCondValue(minspo2value, spo2value);
@@ -477,41 +567,55 @@ function updateChart() {
   let etco2Value = generateDiseaseCondValue(minetco2value, etco2value);
   let rrValue = generateDiseaseCondValue(minrrvalue, rrvalue);
 
+    // Only update BP chart if not stopped
+    if (!isBpStopped) {
+      bpChart.data.datasets[0].data.push(bpValue);
+      if (bpChart.data.datasets[0].data.length > 50) bpChart.data.datasets[0].data.shift();
+      bpChart.update();
+      document.getElementById('bpvalue').innerText = bpValue; // Update BP display
+    }
+  
+    // Only update SpO2 chart if not stopped
+    if (!isSpo2Stopped) {
+      spo2Chart.data.datasets[0].data.push(spo2Value);
+      if (spo2Chart.data.datasets[0].data.length > 50) spo2Chart.data.datasets[0].data.shift();
+      spo2Chart.update();
+      document.getElementById('spo2value').innerText = spo2Value; // Update SpO2 display
+    }
+  
+    // Only update Pulse chart if not stopped
+    if (!isPulseStopped) {
+      pulseChart.data.datasets[0].data.push(pulseValue);
+      if (pulseChart.data.datasets[0].data.length > 50) pulseChart.data.datasets[0].data.shift();
+      pulseChart.update();
+      document.getElementById('pulsevalue').innerText = pulseValue; // Update Pulse display
+    }
+
   // Update each chart with the new values
-  bpChart.data.datasets[0].data.push(bpValue);
-  spo2Chart.data.datasets[0].data.push(spo2Value);
-  pulseChart.data.datasets[0].data.push(pulseValue);
   cvpChart.data.datasets[0].data.push(cvpValue);
   papChart.data.datasets[0].data.push(papValue);
   etco2Chart.data.datasets[0].data.push(etco2Value);
   rrChart.data.datasets[0].data.push(rrValue);
 
   // Trim data to keep only 50 values
-  if (bpChart.data.datasets[0].data.length > 50) bpChart.data.datasets[0].data.shift();
-  if (spo2Chart.data.datasets[0].data.length > 50) spo2Chart.data.datasets[0].data.shift();
-  if (pulseChart.data.datasets[0].data.length > 50) pulseChart.data.datasets[0].data.shift();
   if (cvpChart.data.datasets[0].data.length > 50) cvpChart.data.datasets[0].data.shift();
   if (papChart.data.datasets[0].data.length > 50) papChart.data.datasets[0].data.shift();
   if (etco2Chart.data.datasets[0].data.length > 50) etco2Chart.data.datasets[0].data.shift();
   if (rrChart.data.datasets[0].data.length > 50) rrChart.data.datasets[0].data.shift();
 
-  bpChart.update();
-  spo2Chart.update();
-  pulseChart.update();
+
   cvpChart.update();
   papChart.update();
   etco2Chart.update();
   rrChart.update();
 
   // Update display values on the page
-  document.getElementById('bpvalue').innerText = bpValue;
-  document.getElementById('spo2value').innerText = spo2Value;
-  document.getElementById('pulsevalue').innerText = pulseValue;
-  document.getElementById('cvpvalue').innerText = cvpValue;
   document.getElementById('papvalue').innerText = papValue;
   document.getElementById('etco2value').innerText = etco2Value;
   document.getElementById('rrvalue').innerText = rrValue;
-  playBeep();
+  if (!isBpStopped || !isSpo2Stopped || !isPulseStopped) {
+    playBeep();
+  }
 
   const simulatedData = {
     bpvalue: bpValue,
@@ -524,7 +628,7 @@ function updateChart() {
 
   }
 
-  fetch('http://localhost:4000/teacher-graph-data', {
+  fetch('https://one-simulation-backend.onrender.com/teacher-graph-data', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(simulatedData)
@@ -541,7 +645,7 @@ console.log("simulated Data in create: ",simulatedData);
 }
 
 
-setInterval(checkForStopCommand, 2000);
+setInterval(checkForAllStopCommands, 2000);
 
 // Run updateChart every 1.5 seconds if not stopped
 setInterval(updateChart, 600);

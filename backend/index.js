@@ -8,19 +8,27 @@ import SignupModel from './src/models/signupModels.js';
 const jwtSecret = 'onesimulation||onelearning';
 import path from 'path';
 
-
 // Initialize Express app
 const app = express();
+app.use(cors(
+  {
+    origin: ["https://one-simulation-client-ten.vercel.app"],
+    methods: ["POST","GET"],
+    credentials: true
+  }
+));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cors());
-
 const PORT = 4000;
 
 // Connect to MongoDB
 dbConnection();
 
 
+app.get('/',(req, res) => {
+  res.json("helloworld")
+})
 // routing for the teacher page
 app.get('/teachers', (req, res) => {
   res.sendFile(path.join(__dirname, 'teachers.html')); // Serve the send.html file when /send is accessed
@@ -155,7 +163,9 @@ const sendEventsToAll = (data) => {
 
 
 
-let stopCommand = false;
+let bpStopCommand = false;
+let spo2StopCommand = false;
+let pulseStopCommand = false;
 
 
 
@@ -174,24 +184,76 @@ let stopCommand = false;
 // });
 
 // Endpoint for Arduino to send data
-app.post('/arduino-data', (req, res) => {
+app.post('/arduino-data-bp', (req, res) => {
   const { data } = req.body;
 
   if (data === 'STOP') {
-    stopCommand = true;
+    bpStopCommand = true;
     console.log("Received STOP command from Arduino");
   } else {
-    stopCommand = false;
+    bpStopCommand = false;
   }
   
   res.status(200).send('Data received');
 });
 
 // Endpoint for the frontend to poll for STOP command
-app.get('/arduino-data', (req, res) => {
-  if (stopCommand) {
+app.get('/arduino-data-bp', (req, res) => {
+  if (bpStopCommand) {
     res.json({ command: 'STOP' });
-    stopCommand = false; // Reset command after sending to frontend
+    bpStopCommand = false; // Reset command after sending to frontend
+  } else {
+    res.json({ command: 'CONTINUE' });
+  }
+});
+
+
+// Endpoint for Arduino to send data
+app.post('/arduino-data-spo2', (req, res) => {
+  const { data } = req.body;
+
+  if (data === 'STOP') {
+    spo2StopCommand = true;
+    console.log("Received STOP command from Arduino");
+  } else {
+    spo2StopCommand = false;
+  }
+  
+  res.status(200).send('Data received');
+});
+
+// Endpoint for the frontend to poll for STOP command
+app.get('/arduino-data-spo2', (req, res) => {
+  if (spo2StopCommand) {
+    res.json({ command: 'STOP' });
+    spo2StopCommand = false; // Reset command after sending to frontend
+  } else {
+    res.json({ command: 'CONTINUE' });
+  }
+});
+
+
+
+
+// Endpoint for Arduino to send data
+app.post('/arduino-data-pulse', (req, res) => {
+  const { data } = req.body;
+
+  if (data === 'STOP') {
+    pulseStopCommand = true;
+    console.log("Received STOP command from Arduino");
+  } else {
+    pulseStopCommand = false;
+  }
+  
+  res.status(200).send('Data received');
+});
+
+// Endpoint for the frontend to poll for STOP command
+app.get('/arduino-data-pulse', (req, res) => {
+  if (pulseStopCommand) {
+    res.json({ command: 'STOP' });
+    pulseStopCommand = false; // Reset command after sending to frontend
   } else {
     res.json({ command: 'CONTINUE' });
   }
