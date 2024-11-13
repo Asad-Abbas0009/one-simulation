@@ -531,7 +531,9 @@ function startMonitoring() {
 function resetBpChartsToZero() {
   if (isBpStopped) {
     bpChart.data.datasets[0].data = Array(50).fill(0);  // Reset BP chart
-    bpChart.update();
+    bpvalue = 0;
+    minbpvalue = 0;
+    bpChart.update();  
     document.getElementById('bpvalue').innerText = 0;   // Reset BP display value
   }
 }
@@ -539,6 +541,8 @@ function resetBpChartsToZero() {
 function resetSpo2ChartsToZero() {
   if (isSpo2Stopped) {
     spo2Chart.data.datasets[0].data = Array(50).fill(0);  // Reset SpO2 chart
+    spo2value = 0;
+    minspo2value = 0;
     spo2Chart.update();
     document.getElementById('spo2value').innerText = 0;   // Reset SpO2 display value
   }
@@ -546,7 +550,10 @@ function resetSpo2ChartsToZero() {
 
 function resetPulseChartsToZero() {
   if (isPulseStopped) {
-    pulseChart.data.datasets[0].data = Array(50).fill(0);  // Reset Pulse chart
+    pulseChart.data.datasets[0].data = Array(50).fill(0);
+    pulsevalue = 0;
+    minpulsevalue = 0;
+    // Reset Pulse chart
     pulseChart.update();
     document.getElementById('pulsevalue').innerText = 0;   // Reset Pulse display value
   }

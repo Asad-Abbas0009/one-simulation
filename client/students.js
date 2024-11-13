@@ -22,8 +22,14 @@ document.addEventListener('DOMContentLoaded', function () {
       ],
     },
     options: {
+      responsive: true, // Enables responsiveness
+      maintainAspectRatio: false, // Allows dynamic resizing
       plugins: {
         legend: { display: false },
+      },
+      animation: {
+        duration: 300, // Faster animation
+        easing: 'linear', // Smooth easing function
       },
       scales: {
         y: {
@@ -58,8 +64,14 @@ document.addEventListener('DOMContentLoaded', function () {
       ],
     },
     options: {
+      responsive: true, // Enables responsiveness
+      maintainAspectRatio: false, // Allows dynamic resizing
       plugins: {
         legend: { display: false },
+      },
+      animation: {
+        duration: 300, // Faster animation
+        easing: 'linear', // Smooth easing function
       },
       scales: {
         y: {
@@ -93,8 +105,14 @@ document.addEventListener('DOMContentLoaded', function () {
       ],
     },
     options: {
+      responsive: true, // Enables responsiveness
+      maintainAspectRatio: false, // Allows dynamic resizing
       plugins: {
         legend: { display: false },
+      },
+      animation: {
+        duration: 300, // Faster animation
+        easing: 'linear', // Smooth easing function
       },
       scales: {
         y: {
@@ -128,8 +146,14 @@ document.addEventListener('DOMContentLoaded', function () {
       ],
     },
     options: {
+      responsive: true, // Enables responsiveness
+      maintainAspectRatio: false, // Allows dynamic resizing
       plugins: {
         legend: { display: false },
+      },
+      animation: {
+        duration: 300, // Faster animation
+        easing: 'linear', // Smooth easing function
       },
       scales: {
         y: {
@@ -163,8 +187,14 @@ document.addEventListener('DOMContentLoaded', function () {
       ],
     },
     options: {
+      responsive: true, // Enables responsiveness
+      maintainAspectRatio: false, // Allows dynamic resizing
       plugins: {
         legend: { display: false },
+      },
+      animation: {
+        duration: 300, // Faster animation
+        easing: 'linear', // Smooth easing function
       },
       scales: {
         y: {
@@ -198,8 +228,14 @@ document.addEventListener('DOMContentLoaded', function () {
       ],
     },
     options: {
+      responsive: true, // Enables responsiveness
+      maintainAspectRatio: false, // Allows dynamic resizing
       plugins: {
         legend: { display: false },
+      },
+      animation: {
+        duration: 300, // Faster animation
+        easing: 'linear', // Smooth easing function
       },
       scales: {
         y: {
@@ -233,8 +269,14 @@ document.addEventListener('DOMContentLoaded', function () {
       ],
     },
     options: {
+      responsive: true, // Enables responsiveness
+      maintainAspectRatio: false, // Allows dynamic resizing
       plugins: {
         legend: { display: false },
+      },
+      animation: {
+        duration: 300, // Faster animation
+        easing: 'linear', // Smooth easing function
       },
       scales: {
         y: {
