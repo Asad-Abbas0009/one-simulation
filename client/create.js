@@ -619,6 +619,7 @@ function updateChart() {
   rrChart.update();
 
   // Update display values on the page
+  document.getElementById('cvpvalue').innerText = cvpValue;
   document.getElementById('papvalue').innerText = papValue;
   document.getElementById('etco2value').innerText = etco2Value;
   document.getElementById('rrvalue').innerText = rrValue;
