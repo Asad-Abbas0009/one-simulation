@@ -19,11 +19,17 @@ let minpapvalue = 15;
 let minetco2value = 35;
 let minrrvalue = 12;
 
-const beepSound = new Audio('/client/beep.mp3');
+//const beepSound = new Audio('/client/beep.mp3');
 
-function playBeep() {
-  beepSound.play();
-}
+//function playBeep() {
+ // beepSound.play();
+//}
+let beep = new Audio('/client/beep.mp3');
+beep.load();
+beep.play().catch((error) => {
+    console.error('Failed to play sound:', error);
+});
+
 
 function printbpInputValue(event) {
   // Store the new value from the input field
@@ -482,7 +488,7 @@ function checkPulseStopCommand() {
 function startMonitoring() {
   isMonitoring = true; // Set monitoring to true
   updateChart(); 
-  playBeep();// Call the updateChart function immediately
+ // playBeep();// Call the updateChart function immediately
   setInterval(updateChart, 1500); // Start the update interval
 }
 
