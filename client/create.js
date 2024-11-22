@@ -422,6 +422,7 @@ let isMonitoring = false;
 function startMonitoring() {
   isMonitoring = true;
   updateChart();
+  playBeep();
   setInterval(updateChart, 1500);
 }
 function checkForAllStopCommands() {
@@ -480,7 +481,8 @@ function checkPulseStopCommand() {
 
 function startMonitoring() {
   isMonitoring = true; // Set monitoring to true
-  updateChart(); // Call the updateChart function immediately
+  updateChart(); 
+  playBeep();// Call the updateChart function immediately
   setInterval(updateChart, 1500); // Start the update interval
 }
 
