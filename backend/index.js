@@ -39,6 +39,10 @@ app.get('/students', (req, res) => {
   res.sendFile(path.join(__dirname, 'students.html')); // Serve the receive.html file when /receive is accessed
 });
 
+app.post('/test', (req, res) => {
+  console.log('Test endpoint hit');
+  res.status(200).send('Test successful');
+});
 // Register (Signup) route
 app.post('/signup', async (req, res) => {
   const { fullname, email, password } = req.body;
