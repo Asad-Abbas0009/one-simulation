@@ -202,13 +202,18 @@ app.post('/arduino-data-bp', (req, res) => {
 });
 
 // Endpoint for the frontend to poll for STOP command
-app.get('/arduino-data-bp', (req, res) => {
-  if (bpStopCommand) {
-    res.json({ command: 'STOP' });
-    bpStopCommand = false; // Reset command after sending to frontend
-  } else {
-    res.json({ command: 'CONTINUE' });
-  }
+// app.get('/arduino-data-bp', (req, res) => {
+//   if (bpStopCommand) {
+//     res.json({ command: 'STOP' });
+//     bpStopCommand = false; // Reset command after sending to frontend
+//   } else {
+//     res.json({ command: 'CONTINUE' });
+//   }
+// });
+
+app.post('/arduino-data-bp', (req, res) => {
+  console.log('Incoming Request:', req.body);
+  res.status(200).send('Data received');
 });
 
 
